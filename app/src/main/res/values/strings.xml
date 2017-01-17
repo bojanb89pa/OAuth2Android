@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">OAuth2Android</string>
+    <string name="check_server">CHECK SERVER</string>
+    <string name="login">LOG IN</string>
+</resources>

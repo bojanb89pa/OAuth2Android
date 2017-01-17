@@ -35,6 +35,37 @@ captures/
 # Intellij
 *.iml
 .idea/workspace.xml
+.idea/libraries
+.idea/
 
 # Keystore files
 *.jks
+
+.externalNativeBuild
+
+# Mac OS files
+.DS_Store		
+._*		
+.Spotlight-V100		
+.Trashes		
+ehthumbs.db		
+Thumbs.db
+		
+# Package Files		
+*.jar		
+*.war		
+*.ear
+
+# File-based project format:		
+*.ipr		
+*.iws
+
+# Other files		
+*.orig		
+model_data.bin		
+cache.xml		
+profiles_settings.xml		
+Project_Default.xml
+	
+### Android Patch ###		
+gen-external-apklibs
