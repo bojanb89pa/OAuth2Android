@@ -63,7 +63,7 @@ public class OAuth2Activity extends AppCompatActivity {
     @OnClick(R.id.loginBtn)
     public void login() {
         authManager.authType = AuthorizationManager.AuthType.AUTH_BASIC;
-        oAuth2API.login("user", "password1", AuthorizationManager.GRANT_TYPE).enqueue(new Callback<OAuth2Token>() {
+        oAuth2API.login("user", "password", AuthorizationManager.GRANT_TYPE).enqueue(new Callback<OAuth2Token>() {
             @Override
             public void onResponse(Call<OAuth2Token> call, Response<OAuth2Token> response) {
                 if(response.isSuccessful()) {
