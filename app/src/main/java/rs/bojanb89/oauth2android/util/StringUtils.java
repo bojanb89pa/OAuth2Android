@@ -3,7 +3,6 @@ package rs.bojanb89.oauth2android.util;
 import android.os.Build;
 import android.util.Base64;
 
-import java.io.UnsupportedEncodingException;
 import java.nio.charset.Charset;
 import java.nio.charset.StandardCharsets;
 

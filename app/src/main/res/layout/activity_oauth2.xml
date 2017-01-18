@@ -28,4 +28,34 @@
         android:layout_below="@id/checkServerBtn"
         android:layout_marginTop="20dp"
         android:text="@string/login" />
+
+    <Button
+        android:id="@+id/logoutBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/loginBtn"
+        android:layout_marginTop="20dp"
+        android:text="@string/logout" />
+
+    <Button
+        android:id="@+id/registerBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/logoutBtn"
+        android:layout_marginTop="20dp"
+        android:text="@string/register" />
+
+    <Button
+        android:id="@+id/checkUserBtn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_below="@id/registerBtn"
+        android:layout_marginTop="20dp"
+        android:text="@string/check_user" />
 </RelativeLayout>

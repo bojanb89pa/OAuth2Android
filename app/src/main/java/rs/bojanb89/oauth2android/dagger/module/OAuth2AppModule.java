@@ -19,8 +19,6 @@ public class OAuth2AppModule {
         this.application = application;
     }
 
-    public OAuth2App provideOAuth2App() { return application; }
-
     @Provides
     @Singleton
     public Application provideApplication() {

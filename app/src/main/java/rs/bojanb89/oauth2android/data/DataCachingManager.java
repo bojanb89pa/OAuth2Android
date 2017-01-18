@@ -14,7 +14,7 @@ import java.io.IOException;
 
 public class DataCachingManager {
 
-    private SharedPreferences preferences;
+    private final SharedPreferences preferences;
 
     public DataCachingManager(SharedPreferences preferences) {
         this.preferences = preferences;

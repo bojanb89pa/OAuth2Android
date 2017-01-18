@@ -16,6 +16,7 @@ import rs.bojanb89.oauth2android.BuildConfig;
 import rs.bojanb89.oauth2android.rest.HeaderInterceptor;
 import rs.bojanb89.oauth2android.rest.api.HealthAPI;
 import rs.bojanb89.oauth2android.rest.api.OAuth2API;
+import rs.bojanb89.oauth2android.rest.api.UserAPI;
 import rs.bojanb89.oauth2android.rest.auth.AuthorizationManager;
 import rs.bojanb89.oauth2android.rest.auth.TokenAuthenticator;
 
@@ -80,5 +81,11 @@ public class APIModule {
     @Singleton
     HealthAPI provideHealthAPI(Retrofit retrofit) {
         return retrofit.create(HealthAPI.class);
+    }
+
+    @Provides
+    @Singleton
+    UserAPI provideUserAPI(Retrofit retrofit) {
+        return retrofit.create(UserAPI.class);
     }
 }

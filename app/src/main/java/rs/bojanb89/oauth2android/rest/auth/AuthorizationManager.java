@@ -1,10 +1,5 @@
 package rs.bojanb89.oauth2android.rest.auth;
 
-import android.content.SharedPreferences;
-import android.os.Build;
-
-import java.util.Date;
-
 import rs.bojanb89.oauth2android.BuildConfig;
 import rs.bojanb89.oauth2android.data.DataCachingManager;
 import rs.bojanb89.oauth2android.rest.model.OAuth2Token;
@@ -17,25 +12,26 @@ import rs.bojanb89.oauth2android.util.StringUtils;
 public class AuthorizationManager {
 
 
-    public final static String GRANT_TYPE = "password";
+    public final static String GRANT_TYPE_PASSWORD = "password";
+    public final static String GRANT_TYPE_REFRESH_TOKEN = "refresh_token";
 
     private final static String OAUTH2_TOKEN_KEY = "oauth2Token";
 
-    private DataCachingManager dataCachingManager;
+    private final DataCachingManager dataCachingManager;
 
     private OAuth2Token oAuth2Token;
 
     public enum AuthType {
         AUTH_BASIC("Basic"), AUTH_BEARER("Bearer"), AUTH_NONE("None");
 
-        private String type;
+        private final String type;
 
         AuthType(String type) {
             this.type = type;
         }
     }
 
-    public AuthType authType = AuthType.AUTH_NONE;
+    public AuthType authType = AuthType.AUTH_BEARER;
 
 
     public AuthorizationManager(DataCachingManager dataCachingManager) {
@@ -45,6 +41,9 @@ public class AuthorizationManager {
     public OAuth2Token getOAuth2Token() {
         if(oAuth2Token == null) {
             oAuth2Token = dataCachingManager.get(OAuth2Token.class, OAUTH2_TOKEN_KEY);
+            if(oAuth2Token != null) {
+                authType = AuthType.AUTH_BEARER;
+            }
         }
 
         return oAuth2Token;
@@ -54,6 +53,7 @@ public class AuthorizationManager {
     public void setOAuth2Token(OAuth2Token oauth2Token) {
         this.oAuth2Token = oauth2Token;
         dataCachingManager.save(OAUTH2_TOKEN_KEY, oauth2Token);
+        authType = AuthType.AUTH_BEARER;
     }
 
     public String getAuthorization() {

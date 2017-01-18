@@ -2,4 +2,7 @@
     <string name="app_name">OAuth2Android</string>
     <string name="check_server">CHECK SERVER</string>
     <string name="login">LOG IN</string>
+    <string name="logout">LOG OUT</string>
+    <string name="register">REGISTER</string>
+    <string name="check_user">CHECK USER</string>
 </resources>

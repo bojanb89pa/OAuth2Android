@@ -6,7 +6,6 @@ import okhttp3.Interceptor;
 import okhttp3.Request;
 import okhttp3.Response;
 import rs.bojanb89.oauth2android.rest.auth.AuthorizationManager;
-import rs.bojanb89.oauth2android.rest.model.OAuth2Token;
 
 /**
  * Created by bojanb on 1/16/17.

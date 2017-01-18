@@ -34,7 +34,8 @@ public class TokenAuthenticator implements Authenticator {
 
         if (authManager.getOAuth2Token() != null) {
             String refreshToken = authManager.getOAuth2Token().refreshToken;
-            Call<OAuth2Token> call = oAuth2API.refreshToken(refreshToken, AuthorizationManager.GRANT_TYPE);
+            authManager.authType = AuthorizationManager.AuthType.AUTH_BASIC;
+            Call<OAuth2Token> call = oAuth2API.refreshToken(refreshToken, AuthorizationManager.GRANT_TYPE_REFRESH_TOKEN);
             retrofit2.Response<OAuth2Token> refreshResponse = call.execute();
             if (refreshResponse.isSuccessful()) {
                 OAuth2Token newOAuth2Token = refreshResponse.body();
