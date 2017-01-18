@@ -5,4 +5,13 @@
     <string name="logout">LOG OUT</string>
     <string name="register">REGISTER</string>
     <string name="check_user">CHECK USER</string>
+
+    // Error list:
+    //400
+    <string name="ERROR_40000_BAD_REQUEST_DATA">Error occurred!</string>
+    <string name="ERROR_40001_BAD_REQUEST_PARAMS">Error occurred!</string>
+    //403
+    <string name="ERROR_40300_USER_EXISTS">User exists!</string>
+    //500
+    <string name="ERROR_50000_DEFAULT_CODE">Error occurred!</string>
 </resources>

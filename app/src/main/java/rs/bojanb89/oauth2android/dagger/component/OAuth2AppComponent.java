@@ -9,6 +9,7 @@ import rs.bojanb89.oauth2android.OAuth2Activity;
 import rs.bojanb89.oauth2android.dagger.module.APIModule;
 import rs.bojanb89.oauth2android.dagger.module.DataModule;
 import rs.bojanb89.oauth2android.dagger.module.OAuth2AppModule;
+import rs.bojanb89.oauth2android.rest.APICallback;
 import rs.bojanb89.oauth2android.rest.auth.TokenAuthenticator;
 
 /**
