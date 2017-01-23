@@ -24,7 +24,7 @@ public class AuthorizationManager {
     public enum AuthType {
         AUTH_BASIC("Basic"), AUTH_BEARER("Bearer"), AUTH_NONE("None");
 
-        private final String type;
+        public final String type;
 
         AuthType(String type) {
             this.type = type;

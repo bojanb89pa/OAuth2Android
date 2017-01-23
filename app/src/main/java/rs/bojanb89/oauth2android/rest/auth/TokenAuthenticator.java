@@ -1,6 +1,7 @@
 package rs.bojanb89.oauth2android.rest.auth;
 
 import java.io.IOException;
+import java.util.List;
 
 import javax.inject.Inject;
 
@@ -33,25 +34,40 @@ public class TokenAuthenticator implements Authenticator {
         Injector.get().inject(this);
 
         if (authManager.getOAuth2Token() != null) {
-            String refreshToken = authManager.getOAuth2Token().refreshToken;
-            authManager.authType = AuthorizationManager.AuthType.AUTH_BASIC;
-            Call<OAuth2Token> call = oAuth2API.refreshToken(refreshToken, AuthorizationManager.GRANT_TYPE_REFRESH_TOKEN);
-            retrofit2.Response<OAuth2Token> refreshResponse = call.execute();
-            if (refreshResponse.isSuccessful()) {
-                OAuth2Token newOAuth2Token = refreshResponse.body();
-                if (newOAuth2Token != null) {
-                    authManager.setOAuth2Token(newOAuth2Token);
 
-                    Request.Builder requestBuilder = response.request().newBuilder();
-
-                    authManager.authType = AuthorizationManager.AuthType.AUTH_BEARER;
-
-//                  Add new header to rejected request and retry it
-                    requestBuilder.header(HeaderInterceptor.HEADER_AUTH, authManager.getAuthorization());
-
-                    return requestBuilder.build();
+            List<String> headerList = response.request().headers(HeaderInterceptor.HEADER_AUTH);
+            boolean hasBearerHeader = false;
+            if(headerList != null && headerList.size() > 0) {
+                for (String authHeader : headerList) {
+                    if(authHeader.startsWith(AuthorizationManager.AuthType.AUTH_BEARER.type)) {
+                        hasBearerHeader = true;
+                        break;
+                    }
                 }
             }
+
+            if(hasBearerHeader) {
+                String refreshToken = authManager.getOAuth2Token().refreshToken;
+                authManager.authType = AuthorizationManager.AuthType.AUTH_BASIC;
+                Call<OAuth2Token> call = oAuth2API.refreshToken(refreshToken, AuthorizationManager.GRANT_TYPE_REFRESH_TOKEN);
+                retrofit2.Response<OAuth2Token> refreshResponse = call.execute();
+                if (refreshResponse.isSuccessful()) {
+                    OAuth2Token newOAuth2Token = refreshResponse.body();
+                    if (newOAuth2Token != null) {
+                        authManager.setOAuth2Token(newOAuth2Token);
+
+                        Request.Builder requestBuilder = response.request().newBuilder();
+
+                        authManager.authType = AuthorizationManager.AuthType.AUTH_BEARER;
+
+//                  Add new header to rejected request and retry it
+                        requestBuilder.header(HeaderInterceptor.HEADER_AUTH, authManager.getAuthorization());
+
+                        return requestBuilder.build();
+                    }
+                }
+            }
+
         }
         return null;
     }
