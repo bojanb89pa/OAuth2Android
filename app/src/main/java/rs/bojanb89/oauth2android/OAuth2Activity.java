@@ -15,7 +15,7 @@ import retrofit2.Callback;
 import retrofit2.Response;
 import retrofit2.Retrofit;
 import rs.bojanb89.oauth2android.dagger.Injector;
-import rs.bojanb89.oauth2android.rest.APICallback;
+import rs.bojanb89.oauth2android.rest.APIErrorHandler;
 import rs.bojanb89.oauth2android.rest.api.HealthAPI;
 import rs.bojanb89.oauth2android.rest.api.OAuth2API;
 import rs.bojanb89.oauth2android.rest.api.UserAPI;
@@ -40,6 +40,7 @@ public class OAuth2Activity extends AppCompatActivity {
 
     @Inject
     AuthorizationManager authManager;
+
     @BindString(R.string.ERROR_50000_DEFAULT_CODE) String defaultErrorMessage;
 
     @Override
@@ -109,17 +110,12 @@ public class OAuth2Activity extends AppCompatActivity {
     public void register() {
         authManager.authType = AuthorizationManager.AuthType.AUTH_NONE;
         final User user = new User("test", "test@mailinator.com", "test123");
-        userAPI.signup(user).enqueue(new APICallback<ResponseBody>(this, retrofit) {
+        userAPI.signup(user).enqueue(new APIErrorHandler<ResponseBody>(this, retrofit) {
                                          @Override
                                          public void success(Call<ResponseBody> call, Response<ResponseBody> response) {
                                             if (response.isSuccessful()) {
                                                 login(user.username, user.password);
                                             }
-                                         }
-
-                                         @Override
-                                         public void failure(Call<ResponseBody> call, Throwable t) {
-                                             Toast.makeText(OAuth2Activity.this, defaultErrorMessage, Toast.LENGTH_LONG).show();
                                          }
                                      });
     }

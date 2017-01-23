@@ -12,6 +12,7 @@ import retrofit2.Callback;
 import retrofit2.Converter;
 import retrofit2.Response;
 import retrofit2.Retrofit;
+import rs.bojanb89.oauth2android.OAuth2Activity;
 import rs.bojanb89.oauth2android.R;
 import rs.bojanb89.oauth2android.rest.model.APIError;
 import rs.bojanb89.oauth2android.util.StringUtils;
@@ -20,15 +21,14 @@ import rs.bojanb89.oauth2android.util.StringUtils;
  * Created by bojanb on 1/18/17.
  */
 
-public abstract class APICallback<T> implements Callback <T>{
+public abstract class APIErrorHandler<T> implements Callback <T>{
 
     private Context context;
     private Retrofit retrofit;
 
     public abstract void success(Call<T> call, Response<T> response);
-    public abstract void failure(Call<T> call, Throwable t);
 
-    public APICallback(Context context, Retrofit retrofit) {
+    protected APIErrorHandler(Context context, Retrofit retrofit) {
         this.context = context;
         this.retrofit = retrofit;
     }
@@ -61,6 +61,6 @@ public abstract class APICallback<T> implements Callback <T>{
 
     @Override
     public void onFailure(Call<T> call, Throwable t) {
-        failure(call, t);
+        Toast.makeText(context, context.getResources().getString(R.string.ERROR_50000_DEFAULT_CODE), Toast.LENGTH_LONG).show();
     }
 }
