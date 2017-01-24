@@ -14,4 +14,7 @@
     <string name="ERROR_40300_USER_EXISTS">User exists!</string>
     //500
     <string name="ERROR_50000_DEFAULT_CODE">Error occurred!</string>
+    //OAuth 2.0 errors:
+    <string name="ERROR_invalid_token">Invalid Token!</string>
+    <string name="ERROR_unauthorized">Unauthorized!</string>
 </resources>

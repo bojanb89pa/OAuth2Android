@@ -51,7 +51,7 @@ public abstract class APIErrorHandler<T> implements Callback <T>{
 
             String errorMessage;
             try {
-                errorMessage = StringUtils.getResourceString("ERROR_" + error.codeMessage, context);
+                errorMessage = StringUtils.getResourceString("ERROR_" + error.error, context);
             } catch (IllegalArgumentException e) {
                 errorMessage = context.getResources().getString(R.string.ERROR_50000_DEFAULT_CODE);
             }
