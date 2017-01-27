@@ -125,29 +125,10 @@ public class OAuth2Activity extends AppCompatActivity {
         userAPI.getUser("test").enqueue(new APIErrorHandler<User>(this, retrofit) {
             @Override
             public void success(Call<User> call, Response<User> response) {
-                if (response.isSuccessful()) {
-                    User user = response.body();
-                    Toast.makeText(OAuth2Activity.this, "Username: " + user.username + "\nemail: " + user.email, Toast.LENGTH_LONG).show();
-                }
+                User user = response.body();
+                Toast.makeText(OAuth2Activity.this, "Username: " + user.username + "\nemail: " + user.email, Toast.LENGTH_LONG).show();
             }
         });
-
-//                (new Callback<User>() {
-//            @Override
-//            public void onResponse(Call<User> call, Response<User> response) {
-//                if (response.isSuccessful()) {
-//                    User user = response.body();
-//                    Toast.makeText(OAuth2Activity.this, "Username: " + user.username + "\nemail: " + user.email, Toast.LENGTH_LONG).show();
-//                } else {
-//                    Toast.makeText(OAuth2Activity.this, defaultErrorMessage, Toast.LENGTH_LONG).show();
-//                }
-//            }
-//
-//            @Override
-//            public void onFailure(Call<User> call, Throwable t) {
-//                Toast.makeText(OAuth2Activity.this, defaultErrorMessage, Toast.LENGTH_LONG).show();
-//            }
-//        });
     }
 
 }

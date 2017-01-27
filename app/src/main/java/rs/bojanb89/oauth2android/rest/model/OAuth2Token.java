@@ -21,7 +21,6 @@ public class OAuth2Token {
     @JsonProperty("refresh_token")
     public String refreshToken;
 
-    @JsonIgnore
     public Date expirationDate;
 
     @JsonProperty("expires_in")
